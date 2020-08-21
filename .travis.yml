@@ -1,2 +1,8 @@
 language: java
-script: mvn clean package
+services:
+  - mysql
+before_install:
+  - mysql -e 'CREATE DATABASE wca_development;'
+script:
+  - mvn clean package
+  - ./get_db_export.sh
